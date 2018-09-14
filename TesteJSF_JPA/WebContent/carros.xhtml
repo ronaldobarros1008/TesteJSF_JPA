@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<h:head>
+        <title>Meus Carros</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Marca: " for="campo-marca" />
+                <h:inputText value="#{carroBean.carro.marca}" id="campo-marca" />
+                
+                <h:outputLabel value="Modelo: " for="campo-modelo" />
+                <h:inputText value="#{carroBean.carro.modelo}" id="campo-modelo" />
+                
+                <h:commandButton value="Adicionar" action="#{carroBean.adicionaCarro}" />
+            </h:panelGrid>
+        </h:form>
+        
+        <h:panelGroup rendered="#{not empty carroBean.carros}">
+            <h1>Lista de Carros:</h1>
+            <ul>
+                <ui:repeat value="#{carroBean.carros}" var="carro">
+                    <li><h:outputText value="#{carro.marca} #{carro.modelo}" /></li>
+                </ui:repeat>
+            </ul>
+        </h:panelGroup>        
+    </h:body>    
+</html>
